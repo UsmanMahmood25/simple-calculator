@@ -1,16 +1,23 @@
+# Created By: Usman Mahmood
+# File Name: calculator.py
+
+# Required Imports for the Program
 from gtts import gTTS
 import speech_recognition as sr
 import pyttsx3
 import os
 import math
 
+# Establishes the Microphone
 r = sr.Recognizer()
 
+# Converting the Text into Speech
 def SpeakText(command):
     engine = pyttsx3.init("sapi5", False)
     engine.say(command)
     engine.runAndWait()
-      
+    
+# Converting the String 
 def StrToList(arg):
     str_list = list(arg.split(" "))
     return str_list
@@ -26,15 +33,15 @@ def Operation(arg):
                     new_val = float(dup_ary1[(val-1)]) ** float(dup_ary1[(val+1)])
                     new_val_str = str(new_val)
                     dup_ary1[val] = new_val_str
-                    dup_ary1.remove(dup_ary1[val-1])
-                    dup_ary1.remove(dup_ary1[val])
+                    dup_ary1.pop(val-1)
+                    dup_ary1.pop(val)
                     break
                 
                 elif (dup_ary1[val] == "√"):
                     new_val = math.sqrt(float(dup_ary1[(val+1)]))
                     new_val_str = str(new_val)
                     dup_ary1[val] = new_val_str
-                    dup_ary1.remove(dup_ary1[val+1])
+                    dup_ary1.pop(val+1)
                     break
                     
             if (("^" not in dup_ary1) and ("√" not in dup_ary1)):
@@ -48,16 +55,16 @@ def Operation(arg):
                     new_val = float(dup_ary1[(val-1)]) * float(dup_ary1[(val+1)])
                     new_val_str = str(new_val)
                     dup_ary1[val] = new_val_str
-                    dup_ary1.remove(dup_ary1[val-1])
-                    dup_ary1.remove(dup_ary1[val])
+                    dup_ary1.pop(val-1)
+                    dup_ary1.pop(val)
                     break
                 
                 elif (dup_ary1[val] == "/"):
                     new_val = float(dup_ary1[(val-1)]) / float(dup_ary1[(val+1)])
                     new_val_str = str(new_val)
                     dup_ary1[val] = new_val_str
-                    dup_ary1.remove(dup_ary1[val-1])
-                    dup_ary1.remove(dup_ary1[val])
+                    dup_ary1.pop(val-1)
+                    dup_ary1.pop(val)
                     break
                     
             if (("*" not in dup_ary1) and ("/" not in dup_ary1)):
@@ -71,8 +78,8 @@ def Operation(arg):
                     new_val = float(dup_ary1[(val-1)]) + float(dup_ary1[(val+1)])
                     new_val_str = str(new_val)
                     dup_ary1[val] = new_val_str
-                    dup_ary1.remove(dup_ary1[val-1])
-                    dup_ary1.remove(dup_ary1[val])
+                    dup_ary1.pop(val-1)
+                    dup_ary1.pop(val)
                     val = 0
                     break
                 
@@ -80,8 +87,8 @@ def Operation(arg):
                     new_val = float(dup_ary1[(val-1)]) - float(dup_ary1[(val+1)])
                     new_val_str = str(new_val)
                     dup_ary1[val] = new_val_str
-                    dup_ary1.remove(dup_ary1[val-1])
-                    dup_ary1.remove(dup_ary1[val])
+                    dup_ary1.pop(val-1)
+                    dup_ary1.pop(val)
                     val = 0
                     break
                 
@@ -90,7 +97,7 @@ def Operation(arg):
                     
     print(dup_ary1)
     return arg
-           
+
 print("<-- Welcome to the Calculator -->")
 print("When ready, speak out the calcultion to be made.")
 print("For example: 2 * 2, 3 * 2 + 1, or 4 / 2 + 8")
