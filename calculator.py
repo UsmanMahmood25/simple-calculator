@@ -22,9 +22,11 @@ def StrToList(arg):
     str_list = list(arg.split(" "))
     return str_list
 
+# Function to Perform the Calculation
 def Operation(arg):
     dup_ary1 = arg
     
+    # Performing the Simple Exponent Functions
     x = True
     while(x):
         for val in range(len(dup_ary1)):
@@ -46,7 +48,8 @@ def Operation(arg):
                     
             if (("^" not in dup_ary1) and ("√" not in dup_ary1)):
                 x = False
-                
+    
+    # Performing the Multiple or Division     
     x = True
     while(x):
         for val in range(len(dup_ary1)):
@@ -70,6 +73,7 @@ def Operation(arg):
             if (("*" not in dup_ary1) and ("/" not in dup_ary1)):
                 x = False
     
+    # Performing the Addition and Subtraction
     x = True       
     while(x):     
         for val in range(len(dup_ary1)):
@@ -98,6 +102,7 @@ def Operation(arg):
     print(dup_ary1)
     return arg
 
+# The main code starts here:
 print("<-- Welcome to the Calculator -->")
 print("When ready, speak out the calcultion to be made.")
 print("For example: 2 * 2, 3 * 2 + 1, or 4 / 2 + 8")
