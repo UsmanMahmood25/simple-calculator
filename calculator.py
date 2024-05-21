@@ -17,10 +17,15 @@ def SpeakText(command):
     engine.say(command)
     engine.runAndWait()
     
-# Converting the String 
+# Converting the String w/ Numerical Values Only 
 def StrToList(arg):
     str_list = list(arg.split(" "))
-    return str_list
+    return_ary = []
+    for item in range(len(str_list)):
+        text = str(str_list[item])
+        if((text.isdigit()) or (text == '^') or (text == '√') or (text == '*') or (text == '/') or (text == '+') or (text == '/') ):
+            return_ary.append(str_list[item])
+    return return_ary
 
 # Function to Perform the Calculation
 def Operation(arg):
@@ -103,16 +108,28 @@ def Operation(arg):
     return arg
 
 # The main code starts here:
-print("<-- Welcome to the Calculator -->")
-print("When ready, speak out the calcultion to be made.")
-print("For example: 2 * 2, 3 * 2 + 1, or 4 / 2 + 8")
+text = ("<-- Welcome to the Calculator -->")
+text0 = ("Welcome to the Calculator")
+text2 = ("When ready, speak out the calculation to be made.")
+text3 = ("For example: 2 * 2, 3 * 2 + 1, or 4 / 2 + 8")
+print(text)
+SpeakText(text0)
+print(text2)
+SpeakText(text2)
+print(text3)
+SpeakText(text3)
+text4 = "Are you ready (Y or N): "
+SpeakText(text4)
 choice = input("Are you ready (Y or N): ")
+
 print("")
 
 if ((choice == 'Y') or (choice == 'y')):
     condition = True  
     while(condition):
-        print("Please ask away:")
+        text5 = ("Please ask away:")
+        print(text5)
+        SpeakText(text5)
         try:
             with sr.Microphone() as src2:
                 r.adjust_for_ambient_noise(src2, duration=0.2)
@@ -127,13 +144,17 @@ if ((choice == 'Y') or (choice == 'y')):
                 if ((choice2 == 'Y') or (choice2 == 'y')):
                     condition = False
                 else:
-                    print("Please Try Again")
+                    text6 = "Please Try Again"
+                    print(text6)
+                    SpeakText(text6)
                 
         except sr.RequestError as e:
             print("Unable to request results; {0}".format(e))
             
         except sr.UnknownValueError:
-            print("An unknown error occured")
+            text7 = "An unknown error occured"
+            print(text7)
+            SpeakText(text7)
         
     str_array = StrToList(myText)
     print(str_array)
