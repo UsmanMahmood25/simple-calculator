@@ -23,7 +23,7 @@ def StrToList(arg):
     return_ary = []
     for item in range(len(str_list)):
         text = str(str_list[item])
-        if((text.isdigit()) or (text == '^') or (text == '√') or (text == '*') or (text == '/') or (text == '+') or (text == '/') ):
+        if((text.isdigit()) or (text == '^') or (text == '√') or (text == '*') or (text == '/') or (text == '+') or (text == '-') or (text == '/') ):
             return_ary.append(str_list[item])
     return return_ary
 
